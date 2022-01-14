@@ -1,9 +1,7 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.UI;
-using UnityEngine.Events;
 
 public class CheckInternet : MonoBehaviour
 {
@@ -13,19 +11,21 @@ public class CheckInternet : MonoBehaviour
     [SerializeField]
     private RectTransform rectPanelNotification;
 
-    private float xValue = -90.0f;
+    private float xValue = -22.0f;
+    private float xValue2 = 44.0f;
+
     private float timer;
     private bool connected = false;
     private bool notConnected = false;
     private bool newStatus = true;
-    public float waitTime = 3f;
-
+    private float waitTime = 3f;
+    
     private void Start()
     {
         StartCoroutine(waitNotification());
     }
 
-    void Update()
+    private void Update()
     {
         timer += Time.deltaTime;
         if (timer > waitTime)
@@ -40,7 +40,6 @@ public class CheckInternet : MonoBehaviour
                     notConnected = true;
                     newStatus = true;
                 }
-
             }
             else
             {
@@ -59,13 +58,13 @@ public class CheckInternet : MonoBehaviour
 
         if (notConnected == true && newStatus == true) //No internet
         {
-            LeanTween.move(rectPanelNotification, new Vector3(xValue, 0.0f, 0f), 1f).setCanvasMoveX().setDelay(0.2f);
+            LeanTween.move(rectPanelNotification, new Vector3(0.0f, xValue, 0f), 1f).setCanvasMove().setDelay(0.2f);
             StartCoroutine(waitNotification());
         }
 
         else if (connected == true && newStatus == true)
         {
-            LeanTween.move(rectPanelNotification, new Vector3(xValue, 0.0f, 0f), 1f).setCanvasMoveX().setDelay(0.2f);
+            LeanTween.move(rectPanelNotification, new Vector3(0.0f, xValue, 0f), 1f).setCanvasMove().setDelay(0.2f);
             StartCoroutine(waitNotification());
         }
 
@@ -73,14 +72,14 @@ public class CheckInternet : MonoBehaviour
         {
             newStatus = false;
         }
-    }
 
+    }
 
     IEnumerator waitNotification()
     {
         newStatus = false;
-        yield return new WaitForSecondsRealtime(5.0f);
-        LeanTween.move(rectPanelNotification, new Vector3(-xValue, 0.0f, 0f), 1f).setCanvasMoveX().setDelay(0.2f); //Hide notification
+        yield return new WaitForSecondsRealtime(6.0f);
+        LeanTween.move(rectPanelNotification, new Vector3(0.0f, xValue2, 0f), 1f).setCanvasMove().setDelay(0.2f); //Hide notification
     }
 
     IEnumerator CheckInternetConnection()

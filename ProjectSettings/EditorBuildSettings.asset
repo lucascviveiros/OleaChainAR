@@ -12,8 +12,11 @@ EditorBuildSettings:
     path: Assets/Scenes/myZoomableMap.unity
     guid: c929c6dce7fa4aa48b54452c3af3782a
   - enabled: 1
-    path: Assets/Scenes/CheckGPS.unity
-    guid: 673f8d03cfb69514484e6141f6b19c12
+    path: Assets/Scenes/XRInteraction2.unity
+    guid: a4aca9d9fbd1fa54eb220723701aeb30
+  - enabled: 1
+    path: Assets/Scenes/ARFace.unity
+    guid: e9c25451205206d4189258d0036f21e4
   - enabled: 1
     path: Assets/Scenes/BasicAR.unity
     guid: 1254b8ffa1f3d624b893995bffe7c64c
@@ -26,9 +29,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/BasicAR2.unity
     guid: c1b4eeb77f5ceaa449138c0394ec9ad1
-  - enabled: 0
-    path: Assets/Scenes/MidAirTest.unity
-    guid: 9fc0d4010bbf28b4594072e72b8655ab
+  - enabled: 1
+    path: Assets/Scenes/XRInteraction.unity
+    guid: c38f2f6b76f77f748b57234b832ae101
   m_configObjects:
     UnityEditor.XR.ARCore.ARCoreSettings: {fileID: 11400000, guid: c69903e7ac2d79c47bf7f73e1cb487af, type: 2}
     UnityEditor.XR.ARKit.ARKitSettings: {fileID: 11400000, guid: f014fdfc580a11f4e9ae80cb0d747478, type: 2}

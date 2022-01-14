@@ -7,35 +7,47 @@ using UnityEngine.UI;
 public class NextToTree : MonoBehaviour
 {
     [SerializeField]
-    private Text debugNextTree;
+   // private Text debugNextTree;
+
+    private bool waitLoad;
+
+    private void Start()
+    {
+        StartCoroutine(WaitLoad());
+    }
+
+    private IEnumerator WaitLoad()
+    {
+        yield return new WaitForSecondsRealtime(2.0f);
+        waitLoad = !waitLoad;
+    }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.name == "myCustomMarker(Clone)" || other.gameObject.name == "Sphere")
         {
             //Debug.Log("User next to Tree!");
-            debugNextTree.color = Color.white;
+            //debugNextTree.color = Color.green;
             //debugNextTree.text = "Next to a tree!";
 
         }
 
         else if (other.gameObject.name == "tree_0" || other.gameObject.name == "Sphere")
         {
-            Debug.Log("Next Tree 0");
-           // debugNextTree.text = "Next Tree 0";
+            //Debug.Log("Next Tree 0");
+            //debugNextTree.text = "Next Tree 0";
         }
 
-        //else
-        //{
+        else
+        {
             //Debug.Log("No tree around");
             //debugNextTree.text = "";
-        //}
+        }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        //Debug.Log("No tree around");
-        debugNextTree.text = "";
+       // debugNextTree.text = "";
     }
 
     private void OnTriggerStay(Collider other)
@@ -43,27 +55,41 @@ public class NextToTree : MonoBehaviour
         if (other.gameObject.name == "myCustomMarker(Clone)" || other.gameObject.name == "Sphere")
         {
             //debugNextTree.color = Color.white;
-           // debugNextTree.text = "Keep next!";
-
         }
 
-        if (other.gameObject.name == "Collider_0") 
+        if (other.gameObject.name == "Collider_-1") 
         {
-            //Debug.Log("Next to 0");
-            debugNextTree.text = "Next Tree 0";
+          //  debugNextTree.text = "Next Tree 0";
+           // Debug.Log("Tree 0");
+
+            if (waitLoad)
+            {
+                //StartCoroutine(CountTime());
+            }
+        }
+
+        if (other.gameObject.name == "Collider_0")
+        {
+           // debugNextTree.text = "Next Tree 1";
+           // Debug.Log("Tree 1");
+
+            if (waitLoad)
+            {
+               // StartCoroutine(CountTime());
+            }
+            
         }
 
         if (other.gameObject.name == "Collider_1")
         {
-            //Debug.Log("Next to 1");
-            debugNextTree.text = "Next Tree 1";
+            //debugNextTree.text = "Next Tree 2";
         }
+    }
 
-        if (other.gameObject.name == "Collider_2")
-        {
-            //Debug.Log("Next to 2");
-            debugNextTree.text = "Next Tree 2";
-        }
+    private IEnumerator CountTime()
+    {
+        yield return new WaitForSecondsRealtime(3.0f);
+        UnityEngine.SceneManagement.SceneManager.LoadScene("XRInteraction");
 
     }
 

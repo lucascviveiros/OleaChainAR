@@ -23,13 +23,13 @@
 
 		Coroutine _reloadRoutine;
 
-		WaitForSeconds _wait;
+		private WaitForSeconds _wait;
 
 		void Awake()
 		{
 			_camera = Camera.main;
 			_cameraStartPos = _camera.transform.position;
-			Debug.Log("Camera Start:" + _cameraStartPos.ToString());
+			//Debug.Log("Camera Start:" + _cameraStartPos.ToString());
 
 			_map = FindObjectOfType<AbstractMap>();
 			if(_map == null)

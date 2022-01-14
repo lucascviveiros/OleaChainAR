@@ -12,7 +12,7 @@ using UnityEngine.Android;
 public class TestLocationService : MonoBehaviour
 {
     public Text debug;
-    private GameObject dialog = null;
+    //private GameObject dialog = null;
 
     [SerializeField]
     private TextMeshProUGUI tMod1;
@@ -62,18 +62,22 @@ public class TestLocationService : MonoBehaviour
     {
         if (startListening)
         {
+#if UNITY_EDITOR
+            StartCoroutine(LoadSceneAR());
+#endif
             if (Input.location.status == LocationServiceStatus.Failed)
             {
                 StartCoroutine(LoadSceneAR());
             }
+
             if (Input.location.isEnabledByUser)
             {
-                debug.text = "Localização de GPS reconhecida";
+                debug.text = "LocalizaÃ§Ã£o de GPS reconhecida";
                 StartCoroutine(LoadSceneGPS());
             }
             else
             {
-                debug.text = "Habilite sua localização de GPS";
+                debug.text = "Habilite sua localizaÃ§Ã£o de GPS";
             }
         }
     }
@@ -94,23 +98,23 @@ public class TestLocationService : MonoBehaviour
 
     public void OnEnableGPSbyUser()
     {
-        //1 REQUEST de permição de GPS 
+        //1 REQUEST de permiï¿½ï¿½o de GPS 
         if (!UnityEngine.Android.Permission.HasUserAuthorizedPermission(UnityEngine.Android.Permission.CoarseLocation))
         {
             UnityEngine.Android.Permission.RequestUserPermission(UnityEngine.Android.Permission.CoarseLocation);
             debug.text = "Android Permission";
         }
-        //2 Se já deu permissão verifica se usuario tem o servico de GPS habilitado nas funcoes do celular
+        //2 Se jï¿½ deu permissï¿½o verifica se usuario tem o servico de GPS habilitado nas funcoes do celular
         if (!UnityEngine.Input.location.isEnabledByUser)
         {
             //debug.text = "Android and Location not enabled";
-            debug.text = "Habilite sua localização de GPS";
+            debug.text = "Habilite sua localizaÃ§Ã£o de GPS";
             debug.color = blackColor;
             DisableMod();
         }
         else
         {
-            debug.text = "Localização de GPS reconhecida";
+            debug.text = "LocalizaÃ§Ã£o de GPS reconhecida";
             EnableMod1();
         }
     }
@@ -253,7 +257,7 @@ public class TestLocationService : MonoBehaviour
         {
             // TODO Failure
             Debug.LogFormat("Unable to determine device location. Failed with status {0}", UnityEngine.Input.location.status);
-            debug.text = "Não determinou a localizacao do disp.";
+            debug.text = "NÃ£o determinou a localizacao do disp.";
             yield break;
         }
         else

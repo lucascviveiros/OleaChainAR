@@ -8,7 +8,7 @@ public class EventManager : MonoBehaviour
 //    public static event OnButtonClick onButtonClick;
 
 
-    public delegate void OnUserAllowGPS();
-    public static event OnUserAllowGPS onUserAllowGPS;
+ //   public delegate void OnUserAllowGPS();
+ //   public static event OnUserAllowGPS onUserAllowGPS;
 
 }

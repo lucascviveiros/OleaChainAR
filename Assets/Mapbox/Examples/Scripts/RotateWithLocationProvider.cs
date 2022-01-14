@@ -50,6 +50,13 @@ namespace Mapbox.Examples
 
 		Quaternion _targetRotation;
 
+		private Vector3 bussolaDirection;
+		private Vector3 directon;
+		private Quaternion newTargetRotation;
+		private float myAngle;
+		private Vector3 _targetPosition;
+		private Vector3 v3Current;
+
 		/// <summary>
 		/// The location provider.
 		/// This is public so you change which concrete <see cref="ILocationProvider"/> to use at runtime.  
@@ -79,11 +86,13 @@ namespace Mapbox.Examples
 			}
 		}
 
-		Vector3 _targetPosition;
 
 		void Start()
 		{
 			LocationProvider.OnLocationUpdated += LocationProvider_OnLocationUpdated;
+
+
+			v3Current = transform.eulerAngles;
 		}
 
 		void OnDestroy()
@@ -122,14 +131,12 @@ namespace Mapbox.Examples
 			}
 			else
 			{
-				// if rotating by 'Heading' only do it if heading has a new value
 				if (location.IsUserHeadingUpdated)
 				{
 					_targetRotation = Quaternion.Euler(getNewEulerAngles(rotationAngle));
 				}
 			}
 		}
-
 
 		private Vector3 getNewEulerAngles(float newAngle)
 		{
@@ -154,17 +161,18 @@ namespace Mapbox.Examples
 			return euler;
 		}
 
+		private float Angle360(Vector3 from, Vector3 to, Vector3 normal)
+		{
+			float dot = Vector3.Dot(from, to);
+			float det = Vector3.Dot(normal, Vector3.Cross(from, to));
+			return Mathf.Atan2(det, dot) * Mathf.Rad2Deg;
+		}
+
 
 		void Update()
 		{
-			//			transform.localRotation = Quaternion.(_rotateZ,_targetRotation);
-			//transform.localRotation = Quaternion.Lerp(transform.localRotation, _targetRotation, Time.deltaTime * _rotationFollowFactor);
-			Debug.Log("RE: " + transform.localRotation.ToString() + " Target: " + _targetRotation);
-			Quaternion fromQ, toQ;
-			fromQ.z = transform.localRotation.z;
-			toQ = new Quaternion (0.0f, 0.0f, 0.0f, 0.0f);
-			Vector3 fromV3, toV3;
- ///			transform.localRotation = Quaternion.FromToRotation(fromQ,toQ);
+			transform.localRotation = Quaternion.Lerp(transform.localRotation, _targetRotation, Time.deltaTime * _rotationFollowFactor);
 		}
+
 	}
 }

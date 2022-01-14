@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class ShowPointInfo : MonoBehaviour
 {
@@ -15,7 +16,7 @@ public class ShowPointInfo : MonoBehaviour
     private float xValue = 0.5f;
 
     [SerializeField]
-    private Text myTouchText;
+    private TextMeshProUGUI myTouchedInfo;
 
     [SerializeField]
     private RectTransform rectPanelNotification;
@@ -85,7 +86,7 @@ public class ShowPointInfo : MonoBehaviour
 
             Ray ray = myCamera.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
-            GameObject hitObj;
+            //GameObject hitObj;
 
             if (Physics.Raycast(ray, out hit))
             {
@@ -107,8 +108,11 @@ public class ShowPointInfo : MonoBehaviour
 
     private void UpdateInfo(LabelTextSetter labelText)
     {
-        myTouchText.text = "Obj ID:" + labelTextSetter.GetId();
         string ID = labelTextSetter.GetId();
+        string date = labelTextSetter.GetDate();
+        double Latitude = labelTextSetter.GetLatitude();
+
+        myTouchedInfo.text = "Oliveira ID: " + ID + "\n" + "Date: " + date + "\n" + "Latitude:" + Latitude.ToString();
 
         StartCoroutine(ShowPanelInfo());
     }
@@ -116,7 +120,7 @@ public class ShowPointInfo : MonoBehaviour
     private IEnumerator ShowPanelInfo()
     {
         openPanel = true;
-        LeanTween.move(rectPanelNotification, new Vector3(xValue, 0.0f, 0f), 1f).setCanvasMoveX().setDelay(0.2f);
+        LeanTween.move(rectPanelNotification, new Vector3(xValue, 0.0f, 0f), 1f).setCanvasMove();
         yield return new WaitForSecondsRealtime(1.5f);
         openPanel = false;
     }
@@ -125,8 +129,7 @@ public class ShowPointInfo : MonoBehaviour
     {
         if(openPanel != true)
         {
-            Debug.Log("Close Clicked");
-            LeanTween.move(rectPanelNotification, new Vector3(-190.0f, 0.0f, 0f), 1f).setCanvasMoveX();
+            LeanTween.move(rectPanelNotification, new Vector3(-440.0f, 0.0f, 0f), 1f).setCanvasMove();
         }
     }
 }

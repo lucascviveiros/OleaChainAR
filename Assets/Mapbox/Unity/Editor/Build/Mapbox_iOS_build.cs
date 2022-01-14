@@ -23,7 +23,8 @@ namespace Mapbox.Editor.Build
 
 				var file = File.ReadAllText(projPath);
 				proj.ReadFromString(file);
-				string target = proj.TargetGuidByName("Unity-iPhone");
+				//string target = proj.TargetGuidByName("Unity-iPhone");
+				string targetGuid = proj.GetUnityMainTargetGuid();
 
 				var defaultIncludePath = "Mapbox/Core/Plugins/iOS/MapboxMobileEvents/include";
 				var includePaths = Directory.GetDirectories(Application.dataPath, "include", SearchOption.AllDirectories);
@@ -33,8 +34,8 @@ namespace Mapbox.Editor.Build
 					.DefaultIfEmpty(defaultIncludePath)
 					.First();
 
-				proj.AddBuildProperty(target, "HEADER_SEARCH_PATHS", "$(SRCROOT)/Libraries/" + includePath);
-				proj.AddBuildProperty(target, "OTHER_LDFLAGS", "-ObjC -lz");
+				proj.AddBuildProperty(targetGuid, "HEADER_SEARCH_PATHS", "$(SRCROOT)/Libraries/" + includePath);
+				proj.AddBuildProperty(targetGuid, "OTHER_LDFLAGS", "-ObjC -lz");
 
 				File.WriteAllText(projPath, proj.WriteToString());
 			}

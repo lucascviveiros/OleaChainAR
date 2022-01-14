@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<QCARInfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="QCAR_Dataset_info.xsd">
+    <TargetSet version="3.4">
+        <AreaTarget version="2.1" bbox="-1.7942 -1.3799 -0.5339 1.2210 0.7843 3.2777" targetId="ccc23b2ac4c44daab85bd6aabbe2533b" name="guardaroupa" pathAuthoring="ccc23b2ac4c44daab85bd6aabbe2533b_authoring.glb" pathOcclusion="ccc23b2ac4c44daab85bd6aabbe2533b_occlusion.3dt" pathNavMesh="ccc23b2ac4c44daab85bd6aabbe2533b_navmesh.glb" />
+    </TargetSet>
+</QCARInfo>

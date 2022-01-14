@@ -9,6 +9,9 @@
 		[SerializeField]
 		TextMesh _textMesh;
 
+		[SerializeField]
+		TextMesh _testLatitude;
+
 		private enum TypeInfo { Oliveira = 0, Arte = 1 }
 
 		//Olive trees database
@@ -16,6 +19,7 @@
 		private string info;
 		private int age;
 		private string plantingDate;
+		private double LatitudeID;
 
 		public void Set(Dictionary<string, object> props)
 		{
@@ -41,9 +45,29 @@
 			ID = text;
         }
 
+		public void SetLatitude(double Latitude)
+		{
+			LatitudeID = Latitude;
+			//_testLatitude.text = LatitudeID.ToString();
+		}
+		public void SetDate(string receivedDate)
+        {
+			plantingDate = receivedDate;
+        }
+
 		public string GetId()
         {
 			return ID;
+        }
+
+		public string GetDate()
+        {
+			return plantingDate;
+        }
+
+		public double GetLatitude()
+        {
+			return LatitudeID;
         }
     }
 }

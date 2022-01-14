@@ -16,8 +16,8 @@ public class ARListManager : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI tID;
 
-    [SerializeField]
-    private TextMeshProUGUI tProdução;
+    //[SerializeField]
+    //private TextMeshProUGUI tProduï¿½ï¿½o;
     
     [SerializeField]
     private TextMeshProUGUI tLat;
@@ -42,7 +42,6 @@ public class ARListManager : MonoBehaviour
     private ObserverBehaviour myCustomObserver;
     protected new TargetStatus mPreviousTargetStatus = TargetStatus.NotObserved;
 
-
     void Awake()
     {
         ARListObj = GameObject.Find("ARList");
@@ -66,7 +65,7 @@ public class ARListManager : MonoBehaviour
     public void NoTracking()
     {
         tID.text = "";
-        tProdução.text = "";
+        //tProduï¿½ï¿½o.text = "";
         tLat.text = "";
         tLong.text = "";
     }
@@ -78,7 +77,7 @@ public class ARListManager : MonoBehaviour
         if(QRcode == "ARvore1")
         {
             tID.text = "ID: 001";
-            tProdução.text = "Produção/Ano: 180";
+            //tProduï¿½ï¿½o.text = "Produï¿½ï¿½o/Ano: 180";
             tLat.text = "Lat: 41.797185";
             tLong.text = "Lon: -6.770038";
         }
@@ -86,7 +85,7 @@ public class ARListManager : MonoBehaviour
         else if (QRcode == "ARvore2")
         {
             tID.text = "ID: 002";
-            tProdução.text = "Produção/Ano: 100";
+            //tProduï¿½ï¿½o.text = "Produï¿½ï¿½o/Ano: 100";
             tLat.text = "Lat: 41.796782";
             tLong.text = "Lon: -6.769779";
         }
@@ -126,7 +125,7 @@ public class ARListManager : MonoBehaviour
         }
     }
 
-    //Angulação
+    //Angulaï¿½ï¿½o
 
 
 }
